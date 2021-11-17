@@ -1,0 +1,15 @@
+<li [ngClass]="{'list-group-item': true,
+                'list-group-item-success': title === 'Mon premier post',
+                'list-group-item-danger': title === 'Mon deuxième post',
+                'list-group-item-primary': title === 'Mon troisième post',
+                'list-group-item-info': title === 'Mon quatrième post'}">
+  <div >
+    <h3>{{ title }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <span>{{ created_at | date: 'dd/MM/YYYY, HH:mm'}}</span>
+    </h3>
+    <p>{{ content }}</p>
+  </div>
+  <button class="btn btn-success" (click)="onLove()">Love IT</button> &nbsp; &nbsp; &nbsp;
+  <button class="btn btn-danger" (click)="onNotLove()">Don't Love IT</button>
+
+</li>
