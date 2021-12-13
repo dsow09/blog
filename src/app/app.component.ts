@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,37 +9,22 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'tpBlog avec Angular';
 
-  posts = [
-    {
-      title: 'Mon premier post',
-      content: "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      loveIts: 100,
-      created_at: new Date()
-    },
-    {
-      title: 'Mon deuxième post',
-      content: "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      loveIts: 50,
-      created_at: new Date()
-    },
-    {
-      title: 'Mon troisième post',
-      content: "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      loveIts: 30,
-      created_at: new Date()
-    },
-    {
-      title: 'Mon quatrième post',
-      content: "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      loveIts: 120,
-      created_at: new Date()
-    },
-    {
-      title: 'Mon cinquième post',
-      content: "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      loveIts: 110,
-      created_at: new Date()
-    }
-  ];
-  
+
+  constructor()
+  {
+    const firebaseConfig = {
+      apiKey: "AIzaSyDbeR3jObmKmr0_YRPoElkNszaOYs8PVYA",
+      authDomain: "books-backend-19644.firebaseapp.com",
+      projectId: "books-backend-19644",
+      storageBucket: "books-backend-19644.appspot.com",
+      messagingSenderId: "126322590588",
+      appId: "1:126322590588:web:c7b8e27a599ca04ae0daf9",
+      measurementId: "${config.measurementId}"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  }
+
 }

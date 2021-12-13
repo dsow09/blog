@@ -1,4 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {  Subscription } from 'rxjs';
+import { Post } from '../model/post';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-posts',
@@ -6,24 +10,33 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  @Input() loveIts: number = 0;
-  @Input() title: string | undefined;
-  @Input() dontLoveIts: number = 0;
-  @Input() content: string | undefined;
-  @Input() created_at: Date | undefined
 
-  onLove()
-  {
-    console.log('Love IT = '+ ++this.loveIts+' pour '+this.title);
-  }
+  posts: Post[] = [];
+  postSubscription: Subscription = new Subscription();
 
-  onNotLove()
-  {
-    console.log("Don't Love IT "+ ++this.dontLoveIts+ ' pour '+this.title);
-  }
-  constructor() { }
+
+  constructor(private postService: PostService, private router: Router) { }
 
   ngOnInit(): void {
+    this.postSubscription = this.postService.postsSubject.subscribe(
+      (posts: Post[]) => {
+        this.posts = posts;
+      }
+    );
+    this.postService.getPosts();
+    this.postService.emitPosts();
   }
+
+  onNewPost()
+  {
+    this.router.navigate(['posts', 'new']);
+  }
+
+  onDeletePost(post: Post)
+  {
+    this.postService.removePost(post);
+  }
+
+  
 
 }

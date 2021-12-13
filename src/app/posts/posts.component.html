@@ -1,15 +1,24 @@
-<li [ngClass]="{'list-group-item': true,
-                'list-group-item-success': title === 'Mon premier post',
-                'list-group-item-danger': title === 'Mon deuxième post',
-                'list-group-item-primary': title === 'Mon troisième post',
-                'list-group-item-info': title === 'Mon quatrième post'}">
-  <div >
-    <h3>{{ title }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      <span>{{ created_at | date: 'dd/MM/YYYY, HH:mm'}}</span>
-    </h3>
-    <p>{{ content }}</p>
-  </div>
-  <button class="btn btn-success" (click)="onLove()">Love IT</button> &nbsp; &nbsp; &nbsp;
-  <button class="btn btn-danger" (click)="onNotLove()">Don't Love IT</button>
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Vos Posts</h2>
+    <div class="list-group">
+      <button class="list-group-item"
+              *ngFor="let post of posts; ">
 
-</li>
+      <h3 class="list-group-item-heading">
+        {{ post.title }}
+
+        <button  (click)="onDeletePost(post)" class="btn btn-danger pull right">
+          <i class="fas fa-trash-alt">Supprimer</i>
+        </button>
+
+      </h3>
+
+      <p class="list-group-item-text">{{ post.description }}</p>
+      </button>
+    </div>
+    <button class="btn btn-primary w-100 m-3" (click)="onNewPost()">Nouveau post </button>
+  </div>
+
+</div>
+

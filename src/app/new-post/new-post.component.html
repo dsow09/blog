@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Enregistrer un post</h2>
+    <form [formGroup]="postForm" (ngSubmit)="onSavePost()">
+      <div class="form-group">
+        <label for="title">Titre</label>
+        <input type="text" name="title" id="title" formControlName="title" class="form-control" placeholder="Votre titre">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+       <textarea name="description"  id="description" cols="30" rows="10" placeholder="Votre description" class="form-control" type="text" formControlName="description"></textarea>
+      </div>
+      <button class="btn btn-success m-3 btn-lg w-100" [disabled]="postForm.invalid">Enregister</button>
+    </form>
+    <button (click)="onBack()" class="btn btn-primary m-3 btn-lg w-100">Retour</button>
+  </div>
+</div>
